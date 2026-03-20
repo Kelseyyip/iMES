@@ -15,7 +15,6 @@ def _demean(*views):
     return tuple([view - view.mean(dim=0) for view in views])
 
 class cca_loss():
-#todo: eps can be smaller/percentage
     def __init__(self, latent_dims: int, device, r: float = 0, eps: float = 1e-3):
         """
         :param latent_dims: the number of latent dimensions
@@ -71,7 +70,7 @@ class Decoder(nn.Module):  # Reconstruction of modality features. To improve ICC
         return rec
 
 
-### CNN model for
+### CNN model
 class CNN(nn.Module):
     def __init__(self, input_channels, output_dim, input_height, input_width):
         super(CNN, self).__init__()
