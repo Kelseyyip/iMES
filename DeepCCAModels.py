@@ -4,7 +4,7 @@ import numpy as np
 from objectives import cca_loss
 
 
-class MlpNet(nn.Module):        # For ICCN feature extraction
+class MlpNet(nn.Module): 
     def __init__(self, layer_sizes, input_size):
         super(MlpNet, self).__init__()
         layers = []
@@ -42,7 +42,7 @@ class Decoder(nn.Module):       # Reconstruction of modality features. To improv
        
         return rec
 
-### CNN model for
+
 class CNN(nn.Module):
     def __init__(self, input_channels, output_dim, input_height, input_width):
         super(CNN, self).__init__()
@@ -50,19 +50,19 @@ class CNN(nn.Module):
         self.conv = nn.Sequential(
             nn.Conv2d(input_channels, 32, kernel_size=3, stride=1, padding=1),
             nn.LeakyReLU(),
-            nn.MaxPool2d(2),  # 尺寸缩小 1/2
+            nn.MaxPool2d(2), 
             nn.Conv2d(32, 64, kernel_size=3, stride=1, padding=1),
             nn.LeakyReLU(),
-            nn.MaxPool2d(2)  # 尺寸再缩小 1/2
+            nn.MaxPool2d(2)  
         )
 
-        # 计算池化后的尺寸
+
         reduced_height = input_height // 4
         reduced_width = input_width // 4
         self.fc = nn.Linear(64 * reduced_height * reduced_width, output_dim)
 
     def forward(self, x):
-        x = x.unsqueeze(1)  # 添加通道维度
+        x = x.unsqueeze(1)  
         x = self.conv(x)
         x = x.view(x.size(0), -1)
         x = self.fc(x)
@@ -71,7 +71,7 @@ class CNN(nn.Module):
 
 
 
-class DeepCCA(nn.Module):       # Deep CCA model. MLP for feature extraction, then calculate CCA bettwen featuers
+class DeepCCA(nn.Module):
     def __init__(self, layer_sizes1, layer_sizes2, input_size1, input_size2, outdim_size, use_all_singular_values, device=torch.device('cpu')):
         super(DeepCCA, self).__init__()
         self.model1 = MlpNet(layer_sizes1, input_size1).double()
@@ -91,7 +91,7 @@ class DeepCCA(nn.Module):       # Deep CCA model. MLP for feature extraction, th
 
         return output1, output2
 
-class DeepCCA_updated(nn.Module):       # Deep CCA model. MLP for feature extraction, then calculate CCA bettwen featuers
+class DeepCCA_updated(nn.Module):
     def __init__(self, input_channels, output_dim, input_height0, input_width0, input_height1, input_width1, device=torch.device('cpu')):
         super(DeepCCA_updated, self).__init__()
 
