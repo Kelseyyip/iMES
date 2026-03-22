@@ -3,7 +3,8 @@
 This repository contains the code for the paper:
 
 **"Interactive multimodal disease risk evaluation using a self-service non-invasive device"**  
-Ziqing Ye, Chenglong Zhang, Baoyuan Wu, and David Zhang
+Ziqing Ye, Chenglong Zhang, Baoyuan Wu, and David Zhang,
+
 Communications Medicine, 2026.
 
 ## Overview
