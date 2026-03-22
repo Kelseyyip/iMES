@@ -9,7 +9,7 @@ Communications Medicine, 2026.
 
 ## Overview
 
-This repository provides the implementation used in our study for multimodal disease risk prediction.
+This repository provides the core code used in the study. Some paths or parameters may need to be adapted before running the scripts.
 
 
 ## Requirements
